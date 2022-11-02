@@ -43,7 +43,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "tflabelrg101" {
-    name = "tfrg101"
+    name = "tfrg104"
     location = "East US"
     tags = {
       "name" = "tf-rg-101"
