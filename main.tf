@@ -43,7 +43,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "tflabelrg101" {
-    name = "tfrg101"
+    name = "tfrg104"
     location = "East US"
     tags = {
       "name" = "tf-rg-101"
@@ -121,3 +121,31 @@ resource "azurerm_network_interface" "tflabelappnic101" {
   
 }
 
+<<<<<<< HEAD
+=======
+resource "azurerm_linux_virtual_machine" "tflabelappserver101" {
+  name = "tfappserver"
+  resource_group_name = azurerm_resource_group.tflabelrg101.name
+  location = azurerm_resource_group.tflabelrg101.location
+  size = "Standard_F2"
+  admin_username = "adminuser"
+  network_interface_ids = [
+    azurerm_network_interface.tflabelappnic101.id,
+  ]
+  admin_ssh_key {
+    username = "adminuser"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
+  os_disk {
+    caching = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+  source_image_reference {
+    publisher = "Canonical"
+    offer = "UbuntuServer"
+    sku = "18.04-LTS"
+    version = "latest"
+  }
+  
+}
+>>>>>>> f47278aba05c6c61ddfe2aed75a9691093dc7f3b
